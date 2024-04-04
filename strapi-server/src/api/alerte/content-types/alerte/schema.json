@@ -4,10 +4,11 @@
   "info": {
     "singularName": "alerte",
     "pluralName": "alertes",
-    "displayName": "Alerte"
+    "displayName": "Alerte",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -19,8 +20,9 @@
     },
     "indicateur": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::indicateur.indicateur"
+      "relation": "manyToOne",
+      "target": "api::indicateur.indicateur",
+      "inversedBy": "alertes"
     },
     "indicateur_valeur": {
       "type": "decimal"

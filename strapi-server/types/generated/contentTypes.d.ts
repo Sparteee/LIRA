@@ -368,22 +368,22 @@ export interface ApiAlerteAlerte extends Schema.CollectionType {
     singularName: 'alerte';
     pluralName: 'alertes';
     displayName: 'Alerte';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     resolved: Attribute.Boolean;
     date: Attribute.DateTime;
     indicateur: Attribute.Relation<
       'api::alerte.alerte',
-      'oneToOne',
+      'manyToOne',
       'api::indicateur.indicateur'
     >;
     indicateur_valeur: Attribute.Decimal;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::alerte.alerte',
       'oneToOne',
@@ -408,7 +408,7 @@ export interface ApiIndicateurIndicateur extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     nom: Attribute.String;
@@ -420,9 +420,13 @@ export interface ApiIndicateurIndicateur extends Schema.CollectionType {
       'manyToOne',
       'api::piece.piece'
     >;
+    alertes: Attribute.Relation<
+      'api::indicateur.indicateur',
+      'oneToMany',
+      'api::alerte.alerte'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::indicateur.indicateur',
       'oneToOne',
@@ -447,7 +451,7 @@ export interface ApiPiecePiece extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     nom: Attribute.String;
@@ -459,7 +463,6 @@ export interface ApiPiecePiece extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::piece.piece',
       'oneToOne',

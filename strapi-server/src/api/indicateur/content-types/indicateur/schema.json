@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -29,6 +29,12 @@
       "relation": "manyToOne",
       "target": "api::piece.piece",
       "inversedBy": "indicateurs"
+    },
+    "alertes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::alerte.alerte",
+      "mappedBy": "indicateur"
     }
   }
 }

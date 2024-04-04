@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { getIndicateurs, postAlerte } from "@/services/api.service";
+import { getAlertes, getIndicateurs, postAlerte } from "@/services/api.service";
 
 const indicateurs = ref([]);
 const data = ref({
@@ -38,5 +38,10 @@ export function useIndicateur() {
     }
   };
 
-  return { indicateurs, fetchIndicateurs, data };
+  const getAlerte = async () => {
+    const response = await getAlertes();
+    return response.data;
+  };
+
+  return { indicateurs, fetchIndicateurs, data, getAlerte };
 }

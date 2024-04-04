@@ -10,8 +10,10 @@ export async function getIndicateurs() {
 }
 
 export async function getAlertes() {
-  const { alerte } = await instance.get("/alertes");
-  return alerte;
+  const { data } = await instance.get(
+    "/alertes?sort=id:desc&pagination[limit]=1"
+  );
+  return data;
 }
 
 export function postAlerte(data) {

@@ -11,6 +11,9 @@ onMounted(async () => {
 
   const intervalID = setInterval(async () => {
     await fetchIndicateurs();
+  }, 5000);
+
+  const intervalAlert = setInterval(async () => {
     const [alerte] = await getAlerte();
     if (alerte != null) {
       if (!lastKnownAlerte.value) {
@@ -31,7 +34,7 @@ onMounted(async () => {
         }
       }
     }
-  }, 1000);
+  }, 5000);
 });
 </script>
 

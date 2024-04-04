@@ -3,6 +3,10 @@ import { ref } from 'vue';
 import { vIntersectionObserver } from '@vueuse/components'
 
 import Monitoring from '@/components/Monitoring.vue';
+import EtageUn from '@/components/floors/EtageUn.vue'
+import EtageZero from '@/components/floors/EtageZero.vue'
+import EtageMoinsUn from '@/components/floors/EtageMoinsUn.vue'
+
 const pieceId = ref(0);
 const isMonitoring = ref(false);
 
@@ -11,8 +15,7 @@ const handleClickPiece = (id) => {
   isMonitoring.value = true;
 }
 
-
-const sects = ['hello', 'hello 2', 'Helo 3', 'Hello 4']
+const sects = [{ name: 'Étage un', component: EtageUn }, { name: 'Rez de chaussée', component: EtageZero }, { name: 'Sous-sol' , component: EtageZero }]
 
 const currentFloor = ref('0')
 const root = ref(null)
@@ -35,11 +38,18 @@ function onIntersectionObserver ([{ isIntersecting, target }]) {
     </div>
     <ol class="indicator">
       <li v-for="(_, idx) in sects" :key="_" :data-floor="idx" class="pill">
+        <span></span>
       </li>
     </ol>
     <!-- Etages -->
-    <section v-for="(s, idx) in sects" :key="s" :data-floor="idx" v-intersection-observer="onIntersectionObserver">
-      {{ s }}
+    <section :data-floor="1" v-intersection-observer="onIntersectionObserver">
+      <EtageUn @monitoring="args => console.log(args)" />
+    </section>
+    <section :data-floor="0" v-intersection-observer="onIntersectionObserver">
+      <EtageZero @monitoring="args => console.log(args)" />
+    </section>
+    <section :data-floor="2" v-intersection-observer="onIntersectionObserver">
+      <EtageMoinsUn @monitoring="args => console.log(args)" />
     </section>
   </main>
 </template>
@@ -48,7 +58,7 @@ function onIntersectionObserver ([{ isIntersecting, target }]) {
 main {
   @for $i from 0 through 10 {
     &[data-current-floor="#{$i}"] {
-      .indicator .pill[data-floor="#{$i}"] {
+      .indicator .pill[data-floor="#{$i}"] span {
         background-color: #fff;
       }
     }
@@ -60,17 +70,38 @@ main {
     list-style: none;
     position: fixed;
     z-index: 10;
-    right: 1rem;
+    right: 1.5rem;
     top: 50%;
     transform: translateY(-50%);
     gap: 0.5rem;
 
     .pill {
-      width: 0.25rem;
-      aspect-ratio: 1;
-      border-radius: 999px;
-      background: #000;
-      border: 2px solid #000;
+      --line-height: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+
+      span {
+        display: block;
+        width: 0.75rem;
+        aspect-ratio: 1;
+        border-radius: 999px;
+        background-color: transparent;
+        border: 2px solid black;
+        transition: background-color 200ms ease;
+        outline: 1px solid white;
+      }
+
+      &:not(:first-of-type) {
+        &:before {
+          content: '';
+          display: block;
+          width: 1px;
+          height: var(--line-height);
+          background-color: white;
+        }
+      }
     }
   }
 }
@@ -79,21 +110,8 @@ section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
   height: 100dvh;
-
-  &:nth-of-type(1) {
-    background-color: indianred;
-  }
-
-  &:nth-of-type(2) {
-    background-color: limegreen;
-  }
-
-  &:nth-of-type(3) {
-    background-color: skyblue;
-  }
-
-  &:nth-of-type(4) {
-    background-color: lightsalmon;
-  }
+  display: grid;
+  align-content: center;
+  justify-content: center;
 }
 </style>

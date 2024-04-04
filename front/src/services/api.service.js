@@ -1,7 +1,13 @@
 import instance from "@/config/axios";
 
-export function getPieces() {
-  return instance.get("/pieces");
+export async function getPieces() {
+  const { data } = await instance.get("/pieces");
+  return data;
+}
+
+export async function getIndicateursByPiece(id) {
+  const { data } = await instance.get(`/pieces/${id}?populate=indicateurs`);
+  return data;
 }
 
 export async function getIndicateurs() {

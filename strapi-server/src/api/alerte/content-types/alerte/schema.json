@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "alertes",
+  "info": {
+    "singularName": "alerte",
+    "pluralName": "alertes",
+    "displayName": "Alerte"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "resolved": {
+      "type": "boolean"
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "indicateur": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::indicateur.indicateur"
+    },
+    "indicateur_valeur": {
+      "type": "decimal"
+    }
+  }
+}

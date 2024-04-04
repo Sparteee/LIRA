@@ -362,6 +362,119 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiAlerteAlerte extends Schema.CollectionType {
+  collectionName: 'alertes';
+  info: {
+    singularName: 'alerte';
+    pluralName: 'alertes';
+    displayName: 'Alerte';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    resolved: Attribute.Boolean;
+    date: Attribute.DateTime;
+    indicateur: Attribute.Relation<
+      'api::alerte.alerte',
+      'oneToOne',
+      'api::indicateur.indicateur'
+    >;
+    indicateur_valeur: Attribute.Decimal;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::alerte.alerte',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::alerte.alerte',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiIndicateurIndicateur extends Schema.CollectionType {
+  collectionName: 'indicateurs';
+  info: {
+    singularName: 'indicateur';
+    pluralName: 'indicateurs';
+    displayName: 'Indicateur';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    nom: Attribute.String;
+    min: Attribute.Decimal;
+    max: Attribute.Decimal;
+    seuil: Attribute.Decimal;
+    piece: Attribute.Relation<
+      'api::indicateur.indicateur',
+      'manyToOne',
+      'api::piece.piece'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::indicateur.indicateur',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::indicateur.indicateur',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPiecePiece extends Schema.CollectionType {
+  collectionName: 'pieces';
+  info: {
+    singularName: 'piece';
+    pluralName: 'pieces';
+    displayName: 'Piece';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    nom: Attribute.String;
+    etage: Attribute.Integer;
+    indicateurs: Attribute.Relation<
+      'api::piece.piece',
+      'oneToMany',
+      'api::indicateur.indicateur'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::piece.piece',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::piece.piece',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -798,6 +911,9 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::alerte.alerte': ApiAlerteAlerte;
+      'api::indicateur.indicateur': ApiIndicateurIndicateur;
+      'api::piece.piece': ApiPiecePiece;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;

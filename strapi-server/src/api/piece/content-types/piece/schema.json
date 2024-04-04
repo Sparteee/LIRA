@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pieces",
+  "info": {
+    "singularName": "piece",
+    "pluralName": "pieces",
+    "displayName": "Piece",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nom": {
+      "type": "string"
+    },
+    "etage": {
+      "type": "integer"
+    },
+    "indicateurs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::indicateur.indicateur",
+      "mappedBy": "piece"
+    }
+  }
+}

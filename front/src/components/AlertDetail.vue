@@ -30,10 +30,10 @@ const fixAlert = async () => {
     updateIndicateur
   );
   const responseAlerte = await putAlerte(alertId, updateAlerte);
-  return { responseIndicateur, responseAlerte };
-
   reset();
   resume();
+  return { responseIndicateur, responseAlerte };
+
 };
 </script>
 

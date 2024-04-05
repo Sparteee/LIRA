@@ -40,7 +40,7 @@ function onIntersectionObserver([{ isIntersecting, target }]) {
 </script>
 
 <template>
-  <main ref="root" :data-current-floor="currentFloor">
+  <main ref="root" :data-current-floor="currentFloor" :class="{ 'none_vaisseau': isMonitoring || isAlert }">
     <ol class="indicator">
       <li :data-floor="1" class="pill">
         <span></span>
@@ -67,7 +67,7 @@ function onIntersectionObserver([{ isIntersecting, target }]) {
     <MonitoringModal :pieceId="pieceId" :viewModal="isMonitoring" @close="isMonitoring = false"></MonitoringModal>
   </div>
   <div v-if="isAlert">
-    <AlertModal :showModal="isAlert" />
+    <AlertModal :showModal="isAlert" :alertId="props.alert.id" />
   </div>
 </template>
 
@@ -134,5 +134,9 @@ section {
 
 .title {
   color: white;
+}
+
+.none_vaisseau {
+  display: none;
 }
 </style>

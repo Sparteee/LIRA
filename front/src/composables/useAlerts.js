@@ -13,6 +13,7 @@ export function useIndicateur() {
   const fetchIndicateurs = async () => {
     const response = await getIndicateurs();
 
+    indicateurs.value = [];
     response.data.forEach((indicateur) => {
       indicateurs.value.push(indicateur);
     });
@@ -22,8 +23,9 @@ export function useIndicateur() {
     for (const i of indicateurs.value) {
       if (
         (i.attributes.min > i.attributes.seuil ||
-          i.attributes.max < i.attributes.seuil) &&
-        !i.attributes.alertes.data.find((x) => !x.attributes.resolved)
+          i.attributes.max < i.attributes.seuil)
+        &&
+        (i.attributes.alertes.data.filter((x) => !x.attributes.resolved).length === 0)
       ) {
         // SET DATA
         const dateAjd = new Date().toISOString();

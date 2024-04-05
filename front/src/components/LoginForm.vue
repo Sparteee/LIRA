@@ -44,19 +44,38 @@ const submit = async () => {
   <FormSlot :form="form" :form-errors="formErrors" @submit="submit" :label="label">
     <template v-slot:identifier="{ item }">
       <input type="text" class="input input-bordered text-black" :name="item"
-        :class="{ 'error-input': formErrors[item] }" v-model="form[item]" />
+        :class="{ 'error-input': formErrors[item] }" v-model="form[item]" placeholder=" " />
       <div v-if="formErrors[item]" class="label">
         <span class="label-text-alt error-text">{{ formErrors[item] }}</span>
       </div>
     </template>
     <template v-slot:password="{ item }">
       <input type="password" class="input input-bordered text-black" :name="item"
-        :class="{ 'error-input': formErrors[item] }" v-model="form[item]" />
+        :class="{ 'error-input': formErrors[item] }" v-model="form[item]" placeholder=" " />
       <div v-if="formErrors.password" class="label">
         <span class="label-text-alt error-text">{{ formErrors[item] }}</span>
       </div>
     </template>
-    <template v-slot:BoutonContent>Se connecter</template>
+    <template v-slot:BoutonContent>Connexion</template>
   </FormSlot>
-  <RouterLink to="/" class="btn btn-primary">Retour</RouterLink>
+  <RouterLink to="/" class="btn">Retour</RouterLink>
 </template>
+
+<style scoped>
+
+.btn {
+  margin-top: 2rem;
+  font-family: 'Duborics', system-ui;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+.input {
+  outline: none;
+  color: white;
+  border: 1px solid #cacaca;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+</style>

@@ -103,6 +103,7 @@ section {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
+  pointer-events: none;
 }
 
 .main__attention {

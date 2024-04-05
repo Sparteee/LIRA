@@ -1,14 +1,28 @@
 <script setup>
-import { ref } from 'vue';
-import Monitoring from '@/components/Monitoring.vue';
+import { ref, computed } from "vue";
+import Monitoring from "@/components/Monitoring.vue";
+import AlertModal from "@/components/AlertModal.vue";
+import App from "@/App.vue";
+
+const props = defineProps({
+  alert: {
+    type: Object,
+  },
+});
+
 const pieceId = ref(0);
 const isMonitoring = ref(false);
+
+const isAlert = computed(() => {
+  return props.alert !== null;
+});
+
+console.log(isAlert);
 
 const handleClickPiece = (id) => {
   pieceId.value = id;
   isMonitoring.value = true;
-}
-
+};
 </script>
 
 <template>
@@ -20,4 +34,5 @@ const handleClickPiece = (id) => {
       <Monitoring :pieceId="pieceId" />
     </div>
   </main>
+  <AlertModal :showModal="isAlert" />
 </template>

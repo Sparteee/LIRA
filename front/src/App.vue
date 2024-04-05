@@ -61,6 +61,7 @@ html {
   overscroll-behavior: none;
   scroll-snap-type: y mandatory;
   scrollbar-width: thin;
+  overflow-x: hidden;
 }
 
 html,

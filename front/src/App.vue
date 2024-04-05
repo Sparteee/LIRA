@@ -39,7 +39,20 @@ onMounted(async () => {
 </script>
 
 <template>
-  <RouterView />
+  <RouterView/>
 </template>
 
-<style scoped></style>
+<style>
+html {
+  overscroll-behavior: none;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: thin;
+}
+
+html,
+body,
+#app,
+section {
+  block-size: 100%;
+}
+</style>

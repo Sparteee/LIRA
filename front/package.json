@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vueuse/components": "^10.9.0",
+    "@vueuse/core": "^10.9.0",
     "async-validator": "^4.2.5",
     "axios": "^1.6.8",
     "prettier": "^3.2.5",
@@ -17,6 +19,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
+    "sass": "^1.74.1",
     "vite": "^5.1.6"
   }
 }

@@ -1,0 +1,7 @@
+body {
+    background-attachment: fixed;
+    background-color: black;
+    background-image: url('./img/app-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+}

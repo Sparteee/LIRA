@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "async-validator": "^4.2.5",
     "axios": "^1.6.8",
     "prettier": "^3.2.5",
     "vue": "^3.4.21",

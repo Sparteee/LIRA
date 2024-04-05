@@ -25,3 +25,19 @@ export async function getAlertes() {
 export function postAlerte(data) {
   return instance.post("/alertes", { data: data });
 }
+
+export function apiLogin(form) {
+  return instance.post('/auth/local', form)
+}
+
+export function isAuthenticated() {
+  return !!localStorage.getItem('AUTH_TOKEN')
+}
+export function logoutApi() {
+  localStorage.clear()
+}
+
+export async function getMe() {
+  const data = await instance.get('/users/me')
+  return data;
+}

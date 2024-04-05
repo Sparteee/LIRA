@@ -76,6 +76,12 @@ function onIntersectionObserver([{ isIntersecting, target }]) {
       @closeAlert="isAlert = false"
     />
   </div>
+  <span class="etoile"></span>
+  <span class="etoile"></span>
+  <span class="etoile"></span>
+  <span class="etoile"></span>
+  <span class="etoile"></span>
+  <span class="etoile"></span>
 </template>
 
 <style scoped lang="scss">
@@ -145,5 +151,83 @@ section {
 
 .none_vaisseau {
   display: none;
+}
+.etoile{
+    position: absolute;
+    top: 50%;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 1)  ;
+    animation:  animate 5s ease-in-out infinite;
+}
+.etoile::before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 1px;
+    background: linear-gradient(90deg, #fff, transparent);
+}
+@keyframes animate {
+    0%
+    {
+        transform: rotate(315deg) translateX(0);
+        opacity: 1;
+    }
+    70%
+    {
+        opacity: 1;
+
+    }
+    100%
+    {
+        transform: rotate(315deg) translateX(-1500px);
+        opacity: 0;
+
+    }
+    
+}
+
+
+
+.etoile:nth-child(2){
+    top: 0;
+    right: 0%;
+    animation-delay:1.8s;
+    animation-duration: 2s;
+}
+
+.etoile:nth-child(3){
+    top: 100%;
+    right: 0;
+    animation-delay:2s;
+    animation-duration: 2s;
+}
+.etoile:nth-child(4){
+    top: 200%;
+    right: 0;
+    animation-delay:0.4s;
+    animation-duration: 4s;
+}
+.etoile:nth-child(5){
+    top: 0;
+    right: 40%;
+    animation-delay:0.4s;
+    animation-duration: 2s;
+}
+.etoile:nth-child(6){
+    top: 280%;
+    right: 0%;
+    animation-delay:0.8s;
+    animation-duration: 2s;
+}
+.etoile:nth-child(7){
+    top: 250%;
+    right: 0%;
+    animation-delay:0.4s;
+    animation-duration: 2s;
 }
 </style>

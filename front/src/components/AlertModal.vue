@@ -1,13 +1,13 @@
 <script setup>
-import { useRouter } from "vue-router";
-import { onMounted, ref, watch } from "vue";
-import { RouterLink } from "vue-router";
-import { useAlerte } from "@/composables/useAlerte";
+import { useRouter } from 'vue-router';
+import { onMounted, ref, watch } from 'vue';
+import { RouterLink } from 'vue-router';
+import { useAlerte } from '@/composables/useAlerte';
 const { getPieceAlerte } = useAlerte();
-
-const tab = ref([])
-const piece = ref({})
-const indicateur = ref({})
+const audio = ref(null);
+const tab = ref([]);
+const piece = ref({});
+const indicateur = ref({});
 
 const props = defineProps({
   showModal: {
@@ -22,39 +22,44 @@ const props = defineProps({
 
 const router = useRouter();
 
-const emit = defineEmits(["closeAlert"]);
+const emit = defineEmits(['closeAlert']);
 console.log(props.alertId);
 
 const handleClickAlert = (alertId) => {
-  emit("closeAlert");
+  emit('closeAlert');
   router.push({ path: `/alert/${alertId}` });
 };
 
 const getData = () => {
   const data = getPieceAlerte(102);
-  indicateur.value = data.attributes.indicateur.data
-  piece.value = data.attributes.indicateur.data.attributes.piece.data
-  tab.value = data
-
-}
+  indicateur.value = data.attributes.indicateur.data;
+  piece.value = data.attributes.indicateur.data.attributes.piece.data;
+  tab.value = data;
+};
 
 onMounted(async () => {
-  await getData()
-})
-
+  await getData();
+});
 </script>
 
 <template>
   <div class="modal" :class="{ 'modal-open': showModal }">
     <div class="modal-box">
+      <audio ref="audio" controls autoplay>
+        <source :src="'src/assets/sounds/alerte.mp3'" type="audio/mpeg" />
+      </audio>
       <article>
         <div>
-          <img class="modal__img" :src="'src/assets/img/pieces/Habitats.png'" alt="piece">
+          <img
+            class="modal__img"
+            :src="'src/assets/img/pieces/Habitats.png'"
+            alt="piece"
+          />
         </div>
 
         <div class="container__content">
           <div class="container__title">
-            <h4 class="alert__title">ALERTE<br>SECURITE</h4>
+            <h4 class="alert__title">ALERTE<br />SECURITE</h4>
             <p class="alert__subtitle">ZONE : CANTINE</p>
           </div>
           <div class="indicateur__container">
@@ -64,7 +69,9 @@ onMounted(async () => {
             </div>
           </div>
           <button class="btnResolve" @click="handleClickAlert(alertId)">
-            <RouterLink :to="{ name: 'Alert', params: { id: alertId } }">REPARER</RouterLink>
+            <RouterLink :to="{ name: 'Alert', params: { id: alertId } }"
+              >REPARER</RouterLink
+            >
           </button>
         </div>
       </article>
@@ -124,8 +131,7 @@ onMounted(async () => {
   max-width: 32rem;
   border-radius: 1rem;
   transform: scaleX(var(--scale-x, 0.9)) scaleY(var(--scale-y, 0.9));
-  background-color:
-    rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.15);
   padding: 1.5rem;
   transition-property: background-color, opacity, transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -210,4 +216,5 @@ onMounted(async () => {
     font-family: 'Duborics', sans-serif;
   }
 }
+
 </style>

@@ -1,0 +1,29 @@
+stages:
+  - build
+  - deploy
+
+build-front:
+  image: node:latest
+  stage: build
+  script:
+    - cd front
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - front/dist/
+deploy-front:
+  only:
+    - main
+  when: manual
+  image: node:latest
+  stage: deploy
+  before_script:
+    - eval $(ssh-agent -s)
+    - echo "${PROD_KEY}" | tr -d "\r" | ssh-add -
+  script:
+    - current_release="$(ssh -o StrictHostKeyChecking=no ${PROD_USER}@${PROD_HOST} readlink ${PROD_PATH}/${CURRENT_PATH})"
+    - next_release="release-$(date +%s)"
+    - cp -r front/dist $next_release
+    - scp -o StrictHostKeyChecking=no -r $next_release ${PROD_USER}@${PROD_HOST}:${PROD_PATH}/${RELEASE_PATH}
+    - ssh -o StrictHostKeyChecking=no ${PROD_USER}@${PROD_HOST} "ln -s -n -f ${RELEASE_PATH}$next_release ${PROD_PATH}/${CURRENT_PATH} && rm -rf $current_release"

@@ -41,7 +41,7 @@ const getData = () => {
 onMounted(async () => {
   await getData()
 })
-const emit = defineEmits(["close"]);
+
 </script>
 
 <template>
@@ -63,7 +63,7 @@ const emit = defineEmits(["close"]);
               <p class="indicateur__value">41°</p>
             </div>
           </div>
-          <button class="btnResolve" @click="emit('close')">
+          <button class="btnResolve" @click="handleClickAlert(alertId)">
             <RouterLink :to="{ name: 'Alert', params: { id: alertId } }">REPARER</RouterLink>
           </button>
         </div>

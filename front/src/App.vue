@@ -60,6 +60,7 @@ onMounted(async () => {
         fill="white" />
     </svg>
   </button>
+  <img src="/video/shooting-stars.gif" alt="" class="video">
   <RouterView :alert="alertHomeView" />
 </template>
 
@@ -86,6 +87,16 @@ section {
   color: white;
   font-size: 2.4rem;
   font-family: 'Debodies', sans-serif;
+}
+
+.video {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
 }
 
 .main__attention {

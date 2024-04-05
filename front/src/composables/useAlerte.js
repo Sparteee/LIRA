@@ -1,9 +1,14 @@
-import { getOneByAlerte } from "@/services/api.service";
+import { getOneByAlerte, getPieceByAlerte } from "@/services/api.service";
 
 export function useAlerte() {
   const getOneAlerte = async (id) => {
     const response = await getOneByAlerte(id);
     return response.data;
   };
-  return { getOneAlerte };
+
+  const getPieceAlerte = async (id) => {
+    const response = await getPieceByAlerte(id);
+    return response.data;
+  }
+  return { getOneAlerte, getPieceAlerte };
 }

@@ -21,10 +21,22 @@ export async function getAlertes() {
   );
   return data;
 }
+export async function getOneByAlerte(id) {
+  const { data } = await instance.get(`/alertes/${id}?populate=indicateur`);
+  return data;
+}
 
 export function postAlerte(data) {
   return instance.post("/alertes", { data: data });
 }
+
+
+export function putAlerte(id, data) {
+  return instance.put(`/alertes/${id}`, { data: data });
+}
+
+export function putIndicateur(id, data) {
+  return instance.put(`/indicateurs/${id}`, { data: data });
 
 export function apiLogin(form) {
   return instance.post('/auth/local', form)

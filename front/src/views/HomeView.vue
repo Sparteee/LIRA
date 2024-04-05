@@ -1,5 +1,7 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from "vue";
+import AlertModal from "@/components/AlertModal.vue";
+import App from "@/App.vue";
 import { vIntersectionObserver } from '@vueuse/components'
 
 import EtageUn from '@/components/floors/EtageUn.vue'
@@ -7,13 +9,24 @@ import EtageZero from '@/components/floors/EtageZero.vue'
 import EtageMoinsUn from '@/components/floors/EtageMoinsUn.vue'
 import MonitoringModal from '@/components/MonitoringModal.vue'
 
+const props = defineProps({
+  alert: {
+    type: Object,
+  },
+});
+
+
 const pieceId = ref(0);
 const isMonitoring = ref(false);
+
+const isAlert = computed(() => {
+  return props.alert !== null;
+});
 
 const handleClickPiece = (id) => {
   pieceId.value = id;
   isMonitoring.value = true;
-}
+};
 
 const currentFloor = ref('0')
 const root = ref(null)
@@ -50,6 +63,7 @@ function onIntersectionObserver([{ isIntersecting, target }]) {
       <EtageMoinsUn @monitoring="args => console.log(args)" />
     </section>
   </main>
+  <AlertModal :showModal="isAlert" />
   <div v-if="isMonitoring">
     <MonitoringModal :pieceId="pieceId" :viewModal="isMonitoring" @close="isMonitoring = false"></MonitoringModal>
   </div>

@@ -58,4 +58,5 @@ const submit = async () => {
     </template>
     <template v-slot:BoutonContent>Se connecter</template>
   </FormSlot>
+  <RouterLink to="/" class="btn btn-primary">Retour</RouterLink>
 </template>

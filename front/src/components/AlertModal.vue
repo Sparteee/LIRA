@@ -48,7 +48,7 @@ onMounted(async () => {
     <div class="modal-box">
       <article>
         <div>
-          <img class="modal__img" :src="'/pieces/' + piece.attributes.image" alt="piece" />
+          <img class="modal__img" :src="'/pieces/' + piece?.attributes?.image" alt="piece" />
         </div>
 
         <div class="container__content">

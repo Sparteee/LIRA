@@ -2,10 +2,10 @@
 import { ref } from 'vue';
 import { vIntersectionObserver } from '@vueuse/components'
 
-import Monitoring from '@/components/Monitoring.vue';
 import EtageUn from '@/components/floors/EtageUn.vue'
 import EtageZero from '@/components/floors/EtageZero.vue'
 import EtageMoinsUn from '@/components/floors/EtageMoinsUn.vue'
+import MonitoringModal from '@/components/MonitoringModal.vue'
 
 const pieceId = ref(0);
 const isMonitoring = ref(false);
@@ -15,12 +15,10 @@ const handleClickPiece = (id) => {
   isMonitoring.value = true;
 }
 
-const sects = [{ name: 'Étage un', component: EtageUn }, { name: 'Rez de chaussée', component: EtageZero }, { name: 'Sous-sol' , component: EtageZero }]
-
 const currentFloor = ref('0')
 const root = ref(null)
 
-function onIntersectionObserver ([{ isIntersecting, target }]) {
+function onIntersectionObserver([{ isIntersecting, target }]) {
   if (isIntersecting) {
     currentFloor.value = target.dataset.floor
   }
@@ -30,20 +28,20 @@ function onIntersectionObserver ([{ isIntersecting, target }]) {
 
 <template>
   <main ref="root" :data-current-floor="currentFloor">
-    <button @click="handleClickPiece(1)">Piece 1</button>
-    <button @click="handleClickPiece(2)">Piece 2</button>
-    <button @click="handleClickPiece(3)">Piece 3</button>
-    <div v-if="isMonitoring">
-      <Monitoring :pieceId="pieceId" />
-    </div>
     <ol class="indicator">
-      <li v-for="(_, idx) in sects" :key="_" :data-floor="idx" class="pill">
+      <li :data-floor="1" class="pill">
+        <span></span>
+      </li>
+      <li :data-floor="0" class="pill">
+        <span></span>
+      </li>
+      <li :data-floor="2" class="pill">
         <span></span>
       </li>
     </ol>
     <!-- Etages -->
     <section :data-floor="1" v-intersection-observer="onIntersectionObserver">
-      <EtageUn @monitoring="args => console.log(args)" />
+      <EtageUn @monitoring="args => handleClickPiece(args)" />
     </section>
     <section :data-floor="0" v-intersection-observer="onIntersectionObserver">
       <EtageZero @monitoring="args => console.log(args)" />
@@ -52,6 +50,9 @@ function onIntersectionObserver ([{ isIntersecting, target }]) {
       <EtageMoinsUn @monitoring="args => console.log(args)" />
     </section>
   </main>
+  <div v-if="isMonitoring">
+    <MonitoringModal :pieceId="pieceId" :viewModal="isMonitoring" @close="isMonitoring = false"></MonitoringModal>
+  </div>
 </template>
 
 <style scoped lang="scss">
@@ -113,5 +114,9 @@ section {
   display: grid;
   align-content: center;
   justify-content: center;
+}
+
+.title {
+  color: white;
 }
 </style>

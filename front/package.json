@@ -9,7 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vueuse/components": "^10.9.0",
     "@vueuse/core": "^10.9.0",
+    "async-validator": "^4.2.5",
     "axios": "^1.6.8",
     "prettier": "^3.2.5",
     "vue": "^3.4.21",

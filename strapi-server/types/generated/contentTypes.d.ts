@@ -461,6 +461,7 @@ export interface ApiPiecePiece extends Schema.CollectionType {
       'oneToMany',
       'api::indicateur.indicateur'
     >;
+    image: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

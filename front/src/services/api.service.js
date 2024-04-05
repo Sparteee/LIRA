@@ -37,6 +37,7 @@ export function putAlerte(id, data) {
 
 export function putIndicateur(id, data) {
   return instance.put(`/indicateurs/${id}`, { data: data });
+}
 
 export function apiLogin(form) {
   return instance.post('/auth/local', form)

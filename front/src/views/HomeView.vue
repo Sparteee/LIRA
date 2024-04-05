@@ -28,7 +28,7 @@ const handleClickPiece = (id) => {
   isMonitoring.value = true;
 };
 
-const currentFloor = ref('0')
+const currentFloor = ref(0)
 const root = ref(null)
 
 function onIntersectionObserver([{ isIntersecting, target }]) {
@@ -63,9 +63,11 @@ function onIntersectionObserver([{ isIntersecting, target }]) {
       <EtageMoinsUn @monitoring="args => console.log(args)" />
     </section>
   </main>
-  <AlertModal :showModal="isAlert" />
   <div v-if="isMonitoring">
     <MonitoringModal :pieceId="pieceId" :viewModal="isMonitoring" @close="isMonitoring = false"></MonitoringModal>
+  </div>
+  <div v-if="isAlert">
+    <AlertModal :showModal="isAlert" />
   </div>
 </template>
 

@@ -9,14 +9,14 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: "/alert/:id",
-      name: "Alert",
-      component: AlertDetail,
-    },
-    {
       path: '/',
       name: 'Home',
       component: HomeView
+    },
+    {
+      path: "/alert/:id",
+      name: "Alert",
+      component: AlertDetail,
     },
     {
       path: '/login',

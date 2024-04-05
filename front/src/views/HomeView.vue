@@ -76,12 +76,12 @@ function onIntersectionObserver([{ isIntersecting, target }]) {
       @closeAlert="isAlert = false"
     />
   </div>
-  <span class="etoile"></span>
-  <span class="etoile"></span>
-  <span class="etoile"></span>
-  <span class="etoile"></span>
-  <span class="etoile"></span>
-  <span class="etoile"></span>
+<!--  <span class="etoile"></span>-->
+<!--  <span class="etoile"></span>-->
+<!--  <span class="etoile"></span>-->
+<!--  <span class="etoile"></span>-->
+<!--  <span class="etoile"></span>-->
+<!--  <span class="etoile"></span>-->
 </template>
 
 <style scoped lang="scss">
@@ -188,7 +188,7 @@ section {
         opacity: 0;
 
     }
-    
+
 }
 
 

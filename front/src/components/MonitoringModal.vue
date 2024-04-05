@@ -44,7 +44,7 @@ const emit = defineEmits(['close'])
       </form>
       <article>
         <div>
-          <img class="modal__img" :src="'src/assets/img/pieces/' + piece.image" alt="piece" width="273" height="273" />
+          <img class="modal__img" :src="'/pieces/' + piece.image" alt="piece" width="273" height="273" />
         </div>
         <div class="indicateur__container">
           <div class="indicateur" v-for="  indicateur   in   tab  " :key="indicateur.id">

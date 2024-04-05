@@ -3,7 +3,7 @@ import HomeView from "@/views/HomeView.vue";
 import AlertDetail from "@/components/AlertDetail.vue";
 import * as api from '@/services/api.service';
 import { createRouter, createWebHistory } from 'vue-router'
-const lazyLoad = (view) => () => import(`../views/${view}.vue`)
+const lazyLoad = (view) => () => import(`@/views/${view}.vue`)
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

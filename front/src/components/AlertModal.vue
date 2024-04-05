@@ -102,6 +102,8 @@ onMounted(async () => {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
   transition-property: transform, opacity, visibility;
   opacity: 0;
+  animation: float 6s ease-in-out infinite;
+
 
   // backdrop
   &.modal-open {
@@ -215,6 +217,25 @@ onMounted(async () => {
     text-decoration: none;
     font-family: 'Duborics', sans-serif;
   }
+  animation: shake 5s cubic-bezier(.36,.07,.19,.97) forwards infinite;
 }
-
+@keyframes float {
+  0% {
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translatey(0px);
+  }
+  50% {
+    box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);
+    transform: translatey(-20px);
+  }
+  100% {
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translatey(0px);
+  }
+}
+@keyframes shake {
+	0%, 10%, 100% {transform: translateX(0);}
+	1%, 3%, 5%, 7%, 9% {transform: translateX(-10px);}
+	2%, 4%, 6%, 8% {transform: translateX(10px);}
+}
 </style>

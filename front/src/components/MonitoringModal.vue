@@ -81,6 +81,7 @@ const emit = defineEmits(['close'])
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
   transition-property: transform, opacity, visibility;
   opacity: 0;
+  animation: float 6s ease-in-out infinite;
 
   // backdrop
   &.modal-open {
@@ -168,6 +169,20 @@ const emit = defineEmits(['close'])
     border-radius: 16px;
     min-width: 3rem;
     text-align: center;
+  }
+}
+@keyframes float {
+  0% {
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translatey(0px);
+  }
+  50% {
+    box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);
+    transform: translatey(-20px);
+  }
+  100% {
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translatey(0px);
   }
 }
 </style>

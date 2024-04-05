@@ -69,7 +69,7 @@ const emit = defineEmits(['monitoring'])
             d="M215 318L236.779 327V327C274.686 354.098 301.619 393.892 312.686 439.155L320.351 470.5L325.922 515L327.41 526.383C330.456 549.691 330.388 573.3 327.207 596.59L325.922 606H215V318Z"
             fill="transparent" />
           <!-- Habitat  -->
-          <path class="room" @click="emit('monitoring', 2)" id="etage-1_habitats"
+          <path class="room" @click="emit('monitoring', 1)" id="etage-1_habitats"
             d="M174 318L152.221 327V327C114.314 354.098 87.3812 393.892 76.3137 439.155L68.6494 470.5L63.0779 515L61.5901 526.383C58.5436 549.691 58.6117 573.3 61.7927 596.59L63.0779 606H174V318Z"
             fill="transparent" />
         </g>

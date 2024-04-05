@@ -2,12 +2,12 @@
 import { ref, computed } from "vue";
 import AlertModal from "@/components/AlertModal.vue";
 import App from "@/App.vue";
-import { vIntersectionObserver } from '@vueuse/components'
+import { vIntersectionObserver } from "@vueuse/components";
 
-import EtageUn from '@/components/floors/EtageUn.vue'
-import EtageZero from '@/components/floors/EtageZero.vue'
-import EtageMoinsUn from '@/components/floors/EtageMoinsUn.vue'
-import MonitoringModal from '@/components/MonitoringModal.vue'
+import EtageUn from "@/components/floors/EtageUn.vue";
+import EtageZero from "@/components/floors/EtageZero.vue";
+import EtageMoinsUn from "@/components/floors/EtageMoinsUn.vue";
+import MonitoringModal from "@/components/MonitoringModal.vue";
 
 const props = defineProps({
   alert: {
@@ -15,10 +15,10 @@ const props = defineProps({
   },
 });
 
-
 const pieceId = ref(0);
 const isMonitoring = ref(false);
-
+const emit = defineEmits(["closeAlert"]);
+const test = ref(false);
 const isAlert = computed(() => {
   return props.alert !== null;
 });
@@ -28,15 +28,14 @@ const handleClickPiece = (id) => {
   isMonitoring.value = true;
 };
 
-const currentFloor = ref(0)
-const root = ref(null)
+const currentFloor = ref(0);
+const root = ref(null);
 
 function onIntersectionObserver([{ isIntersecting, target }]) {
   if (isIntersecting) {
-    currentFloor.value = target.dataset.floor
+    currentFloor.value = target.dataset.floor;
   }
 }
-
 </script>
 
 <template>
@@ -54,20 +53,28 @@ function onIntersectionObserver([{ isIntersecting, target }]) {
     </ol>
     <!-- Etages -->
     <section :data-floor="1" v-intersection-observer="onIntersectionObserver">
-      <EtageUn @monitoring="args => handleClickPiece(args)" />
+      <EtageUn @monitoring="(args) => handleClickPiece(args)" />
     </section>
     <section :data-floor="0" v-intersection-observer="onIntersectionObserver">
-      <EtageZero @monitoring="args => console.log(args)" />
+      <EtageZero @monitoring="(args) => console.log(args)" />
     </section>
     <section :data-floor="2" v-intersection-observer="onIntersectionObserver">
-      <EtageMoinsUn @monitoring="args => console.log(args)" />
+      <EtageMoinsUn @monitoring="(args) => console.log(args)" />
     </section>
   </main>
   <div v-if="isMonitoring">
-    <MonitoringModal :pieceId="pieceId" :viewModal="isMonitoring" @close="isMonitoring = false"></MonitoringModal>
+    <MonitoringModal
+      :pieceId="pieceId"
+      :viewModal="isMonitoring"
+      @close="isMonitoring = false"
+    ></MonitoringModal>
   </div>
   <div v-if="isAlert">
-    <AlertModal :showModal="isAlert" />
+    <AlertModal
+      :showModal="isAlert"
+      :alertId="props.alert.id"
+      @closeAlert="isAlert = false"
+    />
   </div>
 </template>
 
@@ -112,7 +119,7 @@ main {
 
       &:not(:first-of-type) {
         &:before {
-          content: '';
+          content: "";
           display: block;
           width: 1px;
           height: var(--line-height);

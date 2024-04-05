@@ -1,32 +1,41 @@
 <script setup>
-import { RouterLink } from "vue-router";
+import { useRouter } from "vue-router";
 
-defineProps({
+const props = defineProps({
   showModal: {
     type: Boolean,
     required: true,
     default: false,
   },
+  alertId: {
+    type: Number,
+  },
 });
 
-const emit = defineEmits(["close"]);
+const router = useRouter();
+
+const emit = defineEmits(["closeAlert"]);
+console.log(props.alertId);
+
+const handleClickAlert = (alertId) => {
+  emit("closeAlert");
+  router.push({ path: `/alert/${alertId}` });
+};
 </script>
 
 <template>
   <div class="modal" :class="{ 'modal-open': showModal }">
     <div class="modal-box">
       <form method="dialog">
-        <button class="btn" @click="emit('close')">✕</button>
+        <button class="btn" @click="emit('closeAlert')">✕</button>
       </form>
       <h3 class="title">
         <slot name="title">#Title</slot>
       </h3>
       <slot name="body">#body</slot>
     </div>
-    <button class="btnResolve" @click="emit('close')">
-      <RouterLink :to="{ name: 'Alert', params: { id: alertId } }"
-        >En savoir +</RouterLink
-      >
+    <button class="btnResolve" @click="handleClickAlert(props.alertId)">
+      En savoir +
     </button>
   </div>
 </template>

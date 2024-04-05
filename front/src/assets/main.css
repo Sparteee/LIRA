@@ -1,2 +1,15 @@
 @import "reset.css";
 @import "base.css";
+@font-face {
+  font-family: "Debodies";
+  src:
+    url("./fonts/debodies-webfont.woff2") format("woff2"),
+    url("./fonts/debodies-webfont.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Duborics";
+  src:
+    url("./fonts/duborics-webfont.woff2") format("woff2"),
+    url("./fonts/duborics-webfont.woff") format("woff");
+}

@@ -3,6 +3,7 @@ import HomeView from "@/views/HomeView.vue";
 import AlertDetail from "@/components/AlertDetail.vue";
 import * as api from '@/services/api.service';
 import { createRouter, createWebHistory } from 'vue-router'
+import LoginView from "@/views/LoginView.vue";
 const lazyLoad = (view) => () => import(`@/views/${view}.vue`)
 
 const router = createRouter({
@@ -21,7 +22,7 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: lazyLoad('LoginView'),
+      component: LoginView,
     },
     {
       path: '/logout',

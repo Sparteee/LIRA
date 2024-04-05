@@ -1,4 +1,5 @@
 <script setup>
+import { useRouter } from "vue-router";
 import { onMounted, ref, watch } from "vue";
 import { RouterLink } from "vue-router";
 import { useAlerte } from "@/composables/useAlerte";
@@ -7,6 +8,7 @@ const { getPieceAlerte } = useAlerte();
 const tab = ref([])
 const piece = ref({})
 const indicateur = ref({})
+
 const props = defineProps({
   showModal: {
     type: Boolean,
@@ -17,6 +19,16 @@ const props = defineProps({
     type: Number,
   },
 });
+
+const router = useRouter();
+
+const emit = defineEmits(["closeAlert"]);
+console.log(props.alertId);
+
+const handleClickAlert = (alertId) => {
+  emit("closeAlert");
+  router.push({ path: `/alert/${alertId}` });
+};
 
 const getData = () => {
   const data = getPieceAlerte(102);
@@ -56,7 +68,6 @@ const emit = defineEmits(["close"]);
           </button>
         </div>
       </article>
-
     </div>
   </div>
 </template>
@@ -192,7 +203,6 @@ const emit = defineEmits(["close"]);
   border-radius: 50px;
   font-size: 30px;
   padding: 0.4rem;
-  ;
 
   a {
     color: red;

@@ -8,7 +8,7 @@ import { useDisplayAlertModal } from "@/composables/useDisplayAlertModal";
 
 const { setDisplayAlertModal } = useDisplayAlertModal();
 
-const { getOneAlerte } = useAlerte();
+const { getOneAlerte, changeTest } = useAlerte();
 const { reset, pause, resume } = useCustomInterval();
 
 const route = useRoute();
@@ -43,6 +43,7 @@ const fixAlert = async () => {
   const responseAlerte = await putAlerte(alertId, updateAlerte);
   reset();
   resume();
+  changeTest();
   emit("closeAlert");
   setDisplayAlertModal(false);
   router.push({ path: "/" });

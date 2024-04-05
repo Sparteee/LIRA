@@ -2,7 +2,8 @@
 import { useCustomInterval } from "@/composables/useCustomInterval";
 import { useRoute, useRouter } from "vue-router";
 import { useAlerte } from "@/composables/useAlerte";
-import { putAlerte, putIndicateur } from "@/services/api.service";
+import { putAlerte, putIndicateur, isAuthenticated } from "@/services/api.service";
+import { onMounted, ref } from "vue";
 
 const { getOneAlerte } = useAlerte();
 const { reset, pause, resume } = useCustomInterval();
@@ -11,6 +12,11 @@ const route = useRoute();
 const router = useRouter();
 const alertId = route.params.id;
 const emit = defineEmits(["closeAlert"]);
+const isAuth = ref(false);
+
+onMounted(() => {
+  isAuth.value = isAuthenticated();
+});
 
 const fixAlert = async () => {
   const data = await getOneAlerte(alertId);
@@ -45,7 +51,7 @@ const fixAlert = async () => {
     <section class="alert">
       <div class="alert__header">
         <h2 class="alert__title">ALERTE <br />SECURITE</h2>
-        <button @click="fixAlert()" class="alert__btn">Reparer</button>
+        <button @click="fixAlert()" v-if="isAuth" class="alert__btn">Reparer</button>
       </div>
       <article class="alert__documentation documentation">
         <h2 class="documentation__title">Documentation</h2>

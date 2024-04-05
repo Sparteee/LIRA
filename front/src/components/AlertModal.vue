@@ -30,8 +30,9 @@ const handleClickAlert = (alertId) => {
   router.push({ path: `/alert/${alertId}` });
 };
 
-const getData = () => {
-  const data = getPieceAlerte(102);
+const getData = async () => {
+  const data = await getPieceAlerte(props.alertId);
+  console.log(data);
   indicateur.value = data.attributes.indicateur.data;
   piece.value = data.attributes.indicateur.data.attributes.piece.data;
   tab.value = data;
@@ -45,33 +46,25 @@ onMounted(async () => {
 <template>
   <div class="modal" :class="{ 'modal-open': showModal }">
     <div class="modal-box">
-      <audio ref="audio" controls autoplay>
-        <source :src="'src/assets/sounds/alerte.mp3'" type="audio/mpeg" />
-      </audio>
       <article>
         <div>
-          <img
-            class="modal__img"
-            :src="'src/assets/img/pieces/Habitats.png'"
-            alt="piece"
-          />
+          <img class="modal__img" :src="'src/assets/img/pieces/Habitats.png'" alt="piece" />
         </div>
 
         <div class="container__content">
           <div class="container__title">
             <h4 class="alert__title">ALERTE<br />SECURITE</h4>
-            <p class="alert__subtitle">ZONE : CANTINE</p>
+            <p class="alert__subtitle">ZONE : {{ piece?.attributes?.nom }} - E {{ piece?.attributes?.etage }}</p>
           </div>
           <div class="indicateur__container">
             <div class="indicateur">
-              <h4 class="indicateur__title">TEMPERATURE</h4>
-              <p class="indicateur__value">41°</p>
+              <h4 class="indicateur__title">{{ indicateur?.attributes?.nom }}</h4>
+              <p class="indicateur__value">{{ indicateur?.attributes?.nom === "TEMPERATURE" ?
+    indicateur?.attributes?.seuil + '°' : indicateur?.attributes?.seuil + '%' }}</p>
             </div>
           </div>
           <button class="btnResolve" @click="handleClickAlert(alertId)">
-            <RouterLink :to="{ name: 'Alert', params: { id: alertId } }"
-              >REPARER</RouterLink
-            >
+            <RouterLink :to="{ name: 'Alert', params: { id: alertId } }">REPARER</RouterLink>
           </button>
         </div>
       </article>

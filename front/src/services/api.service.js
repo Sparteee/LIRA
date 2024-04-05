@@ -54,3 +54,8 @@ export async function getMe() {
   const data = await instance.get('/users/me')
   return data;
 }
+
+export async function getPieceByAlerte(id) {
+  const { data } = await instance.get(`/alertes/${id}?populate[indicateur][populate][0]=piece`);
+  return data;
+}

@@ -37,6 +37,7 @@ onMounted(async () => {
           //open modal
           console.log("open modal");
           alertHomeView.value = alerte;
+          pause();
         }
       }
     }
@@ -45,6 +46,7 @@ onMounted(async () => {
 </script>
 
 <template>
+  <h1 class="main__title">L.I.R.A.</h1>
   <RouterView :alert="alertHomeView" />
 </template>
 
@@ -60,5 +62,15 @@ body,
 #app,
 section {
   block-size: 100%;
+}
+
+.main__title {
+  position: fixed;
+  right: 50%;
+  transform: translateX(55%);
+  top: 4dvh;
+  color: white;
+  font-size: 2.4rem;
+  font-family: 'Debodies', sans-serif;
 }
 </style>

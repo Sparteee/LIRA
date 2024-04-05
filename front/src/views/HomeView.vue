@@ -39,7 +39,7 @@ function onIntersectionObserver([{ isIntersecting, target }]) {
 </script>
 
 <template>
-  <main ref="root" :data-current-floor="currentFloor">
+  <main ref="root" :data-current-floor="currentFloor" :class="{ 'none_vaisseau': isMonitoring || isAlert }">
     <ol class="indicator">
       <li :data-floor="1" class="pill">
         <span></span>
@@ -141,5 +141,9 @@ section {
 
 .title {
   color: white;
+}
+
+.none_vaisseau {
+  display: none;
 }
 </style>

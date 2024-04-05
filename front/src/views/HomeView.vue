@@ -8,6 +8,9 @@ import EtageUn from "@/components/floors/EtageUn.vue";
 import EtageZero from "@/components/floors/EtageZero.vue";
 import EtageMoinsUn from "@/components/floors/EtageMoinsUn.vue";
 import MonitoringModal from "@/components/MonitoringModal.vue";
+import { useDisplayAlertModal } from "@/composables/useDisplayAlertModal";
+
+const { shouldDisplayModal } = useDisplayAlertModal();
 
 const props = defineProps({
   alert: {
@@ -18,7 +21,6 @@ const props = defineProps({
 const pieceId = ref(0);
 const isMonitoring = ref(false);
 const emit = defineEmits(["closeAlert"]);
-const test = ref(false);
 const isAlert = computed(() => {
   return props.alert !== null;
 });
@@ -39,7 +41,11 @@ function onIntersectionObserver([{ isIntersecting, target }]) {
 </script>
 
 <template>
-  <main ref="root" :data-current-floor="currentFloor" :class="{ 'none_vaisseau': isMonitoring || isAlert }">
+  <main
+    ref="root"
+    :data-current-floor="currentFloor"
+    :class="{ none_vaisseau: isMonitoring || (shouldDisplayModal && isAlert) }"
+  >
     <ol class="indicator">
       <li :data-floor="1" class="pill">
         <span></span>
@@ -71,8 +77,8 @@ function onIntersectionObserver([{ isIntersecting, target }]) {
   </div>
   <div v-if="isAlert">
     <AlertModal
-      :showModal="isAlert"
-      :alertId="props.alert.id"
+      :showModal="shouldDisplayModal && isAlert"
+      :alertId="props?.alert?.id"
       @closeAlert="isAlert = false"
     />
   </div>
@@ -172,23 +178,17 @@ section {
     background: linear-gradient(90deg, #fff, transparent);
 }
 @keyframes animate {
-    0%
-    {
-        transform: rotate(315deg) translateX(0);
-        opacity: 1;
-    }
-    70%
-    {
-        opacity: 1;
-
-    }
-    100%
-    {
-        transform: rotate(315deg) translateX(-1500px);
-        opacity: 0;
-
-    }
-
+  0% {
+    transform: rotate(315deg) translateX(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(315deg) translateX(-1500px);
+    opacity: 0;
+  }
 }
 
 

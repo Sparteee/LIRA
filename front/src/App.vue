@@ -3,8 +3,11 @@ import { RouterLink, RouterView } from "vue-router";
 import { useIndicateur } from "./composables/useIndicateur";
 import { onMounted, ref } from "vue";
 import { useCustomInterval } from "@/composables/useCustomInterval";
+import { useDisplayAlertModal } from "@/composables/useDisplayAlertModal";
 
 const { fetchIndicateurs, getAlerte } = useIndicateur();
+
+const { setDisplayAlertModal } = useDisplayAlertModal();
 
 const lastKnownAlerte = ref(null);
 const alertHomeView = ref(null);
@@ -28,6 +31,7 @@ onMounted(async () => {
           //open modal
           console.log("open modal");
           alertHomeView.value = alerte;
+          setDisplayAlertModal(true);
           pause();
         }
       } else if (lastKnownAlerte.value.id !== alerte.id) {
@@ -37,6 +41,7 @@ onMounted(async () => {
           //open modal
           console.log("open modal");
           alertHomeView.value = alerte;
+          setDisplayAlertModal(true);
           pause();
         }
       }

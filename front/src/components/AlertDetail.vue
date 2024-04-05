@@ -4,6 +4,9 @@ import { useRoute, useRouter } from "vue-router";
 import { useAlerte } from "@/composables/useAlerte";
 import { putAlerte, putIndicateur, isAuthenticated } from "@/services/api.service";
 import { onMounted, ref } from "vue";
+import { useDisplayAlertModal } from "@/composables/useDisplayAlertModal";
+
+const { setDisplayAlertModal } = useDisplayAlertModal();
 
 const { getOneAlerte } = useAlerte();
 const { reset, pause, resume } = useCustomInterval();
@@ -41,6 +44,7 @@ const fixAlert = async () => {
   reset();
   resume();
   emit("closeAlert");
+  setDisplayAlertModal(false);
   router.push({ path: "/" });
   return { responseIndicateur, responseAlerte };
 };

@@ -52,7 +52,7 @@ onMounted(async () => {
 
 <template>
   <h1 class="main__title">L.I.R.A.</h1>
-  <button type="button" class="main__attention" :class="{ alert: alertHomeView !== null }">
+  <button type="button" class="main__attention" :class="{ alert: alertHomeView !== null && !alertHomeView.attributes.resolved }">
     <svg width="37" height="34" viewBox="0 0 37 34" fill="none"
       xmlns="http://www.w3.org/2000/svg">
       <path

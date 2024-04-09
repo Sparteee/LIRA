@@ -1,4 +1,4 @@
-# LIRA - Hackathon Vue 2024 - LP MIAW
+# L.I.R.A. - Hackathon Vue 2024 - LP MIAW
 ## 🚀 Thème
 
 En l'an 2198, vous avez embarqué à bord de l'Arcadie, le vaisseau spatiale abritant le reste de l'Humanité vers Keppler-438b. Le commandant vous a réunis pour l'aider à outiller la navette pour ce long périple. Voici le message du commandant :
@@ -27,42 +27,35 @@ En l'an 2198, vous avez embarqué à bord de l'Arcadie, le vaisseau spatiale abr
 >
 > Rejoignez-nous, valeureux compagnons, et ensemble, écrivons le prologue d'une nouvelle ère pour l'humanité !
 
-## 📅 L'événément
+## Objectif
 
-### Consignes
+Le hackathon débutera le jeudi 4 avril à 9h30 et se poursuivra jusqu'au vendredi 5 avril à 12h, sans interruption pour la phase de projet. La présentation du projet et de son concept se déroulera lors d'une séance commerciale à partir de vendredi à 14h.
 
-L'événement débute jeudi 04 avril à 9h30, jusqu'au vendredi 05 avril 12h sans interuption pour la partie projet. Le vendredi à 14h débutera la présentation des dits-projets.
+L'objectif de LIRA (Logiciel Intelligent de Réparation Avancée) est d'améliorer la gestion technique et la maintenance du vaisseau Arcadie par les mécaniciens. Chaque zone du vaisseau est équipée de capteurs surveillant des éléments critiques tels que la température, l'oxygène, la gravité, l'énergie et Stelaris.
 
-Vous devez rendre votre projet fait avec Vue pour le vendredi 12h, heure du dernier commit sur **gitlab de l'université** faisant foi.
-Vous présenterez votre projet et son concept lors d'une présentation commerciale à partir de vendredi 14h.
+Chaque zone est dotée de ses propres indicateurs avec des niveaux spécifiques. En permanence, l'application est connectée à un système d'alerte qui surveille en temps réel si l'un des indicateurs dépasse les seuils critiques. En cas d'anomalie, une alerte est émise, indiquant la zone et l'indicateur concernés. Un bouton sur cette alerte permet d'accéder à un espace où l'on peut signaler la résolution du problème, ainsi que consulter une documentation sur la résolution de chaque type de panne.
 
 ### Les capitaines
 
-Pour vous épauler, chaque équipe aura un capitaine tiré au sort le matin-même de l'épreuve. Ils seront là pour vous aiguiller dans vos choix techniques et fonctionnels, vous aider à vous organiser et participer à la réflexion. Ces capitaines sont des personnes expérimentées de la Tech, qui viennent vous donner de leurs temps, alors n'hésitez pas à les solliciter et échanger avec eux sur le métier en général ! 😉
+Pour nous assister, chaque équipe s'est vu attribuer un capitaine désigné au hasard le matin même de l'épreuve. Ces capitaines étaient là pour nous guider dans nos choix techniques et fonctionnels, nous aider à nous organiser et à participer à la réflexion. Ils étaient des professionnels expérimentés de la Tech de l'entreprise Sellsy.
+
+Pour L.I.R.A., nous avons été accompagnés par Axel BARATEAU, Product Owner chez Sellsy, qui nous a grandement aidés dans notre organisation durant ces deux jours intenses. Cela nous a permis de présenter L.I.R.A dans une version aboutie avec une présentation exemplaire. Nous lui sommes reconnaissants d'avoir joué le jeu et de s'être investi dans notre projet.
 
 ## 📂 Stack
 
 ### Le frontend
 
-Créez un projet Vue à la racine du projet, au même niveau que celui du serveur.
-
-Restrictions :
-
-- framework JS : Vue only
-- framework CSS ✅ (Tailwindcss, bootstrap, bulma, etc...)
-- framework UI ✖️ (PrimeVue, Vuetify, Element, ...)
+- Vue
 
 ### Le backend
 
 Dans le dossier `strapi-server`, vous trouverez un projet minimal d'API construit avec [Strapi](https://strapi.io/). Il vous permettra d'avoir un peu de liberté quant aux entités et informations disponibles dans l'API.
 
-⚠️ Vous n'avez pas spécialement à coder dans cette partie là. Strapi a été choisi car, comme vu en cours, il vous permet de créer des routes, entités et champs facilement au travers d'une interface d'administration. Le but reste de développer votre application Vue ! Si vous n'avez pas optimisé, protégé ou gérer vos profils de privilèges/routes/entités, **ce n'est pas grave !**
-
 - Lien de l'administration: http://localhost:1337/admin
 - Lien de la documentation OpenAPI: http://localhost:1337/documentation/v1.0.0
 - Endpoint de base: http://localhost:1337/api
 
-## ☕ Getting Started
+## ☕ Installation du projet
 
 Clonez ce projet :
 
@@ -95,4 +88,16 @@ Lancez le frontend :
 ```
 npm run dev
 ```
+
+## Auteurs
+
+ - [Johan MORGA](https://github.com/JohanMorga) - Développement
+ - [Sean REYBOZ](https://github.com/SeanReyboz/) - Développement
+ - [Raphaël VICTOR](https://github.com/Sparteee) - Développement
+ - Arthur JARRIAU - Développement - Chef de projet
+ - Bastien Joly - Développement
+ - Margot BODIER - Design - Communication
+ - [Valentin TOUZINAUD](https://github.com/ValentinTouzinaud) - Design - Communication
+ - William Camilleri - Design - Communication
+
 

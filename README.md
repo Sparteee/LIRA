@@ -86,10 +86,11 @@ npm run dev
 
 ## Auteurs
 
+ - Axel BARATEAU - Chef de Projet
  - [Johan MORGA](https://github.com/JohanMorga) - Développement
  - [Sean REYBOZ](https://github.com/SeanReyboz/) - Développement
  - [Raphaël VICTOR](https://github.com/Sparteee) - Développement
- - Arthur JARRIAU - Développement - Chef de projet
+ - Arthur JARRIAU - Développement
  - Bastien Joly - Développement
  - Margot BODIER - Design - Communication
  - [Valentin TOUZINAUD](https://github.com/ValentinTouzinaud) - Design - Communication

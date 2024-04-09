@@ -1,7 +1,4 @@
-# Hackathon Vue 2024
-
-Bienvenue dans ce hackathon Vue pour votre année 2024 en Licence Pro.
-
+# LIRA - Hackathon Vue 2024 - LP MIAW
 ## 🚀 Thème
 
 En l'an 2198, vous avez embarqué à bord de l'Arcadie, le vaisseau spatiale abritant le reste de l'Humanité vers Keppler-438b. Le commandant vous a réunis pour l'aider à outiller la navette pour ce long périple. Voici le message du commandant :

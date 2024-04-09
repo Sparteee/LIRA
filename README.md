@@ -67,11 +67,10 @@ Dans le dossier `strapi-server`, vous trouverez un projet minimal d'API construi
 Clonez ce projet :
 
 ```bash
-git clone git@gitlab.univ-lr.fr:vue-2024/hackathon.git
-cd hackathon
+git clone git@github.com:Sparteee/LIRA.git lira
+cd lira
 ```
 
-Créer un projet sur le gitlab de l'université, puis ajouter la remote au projet.
 
 Lancez le serveur pour la première fois:
 
@@ -94,74 +93,6 @@ Et vous connectez à l'interface d'admin du serveur sur l'url : http://localhost
 Lancez le frontend :
 
 ```
-Vous savez faire 😉
+npm run dev
 ```
 
-## ⚙️ Utiliser Strapi
-
-Dans l'interface d'administration de Strapi, il faut distinguer 2 parties différentes: le Contenu et le Content-Type Builder.
-
-Le **contenu** est simplement la donnée présente dans votre API: un patient, un utilisateur, une visite, etc... qui est administrable. Création, modification, suppresion, vous pouvez faire tout ce qu'un CMS classique peut faire.
-
-Le **Content-Type Builder** est la partie où vous configurez vos entités, ces champs, ses relations, etc...
-Exemple, je peux créer un type de contenu Patient, qui a plusieurs champs: nom, prénom, date de naissance, ... N'hésitez pas à parcours tous les choix de champs proposés par Strapi et notamment les Relations.
-
-Les **Relations** sont un type de champs qui lie de différentes manières 2 entités entre-elles. Ex: Un patient a plusieurs traitements. Une tournée a plusieurs patients.
-
-Les **Singles Types** sont un type de contenu dont vous n'aurez pas spécialement besoin. Il s'agit d'élément à caractère unique, homepage, footer par exemple, très utile dans le cas où Strapi vous sert de templating CMS complet (comme WordPress).
-
-Les **Components** sont des groupes de champs répétables qui ne sont pas lié à des entités.
-
-Vous avez également accès à une **médiathèque** pour gérer les assets de vos entités.
-
-### Travailler à plusieurs sur Strapi
-
-Votre base de donnée est situé dans le fichier `./.tmp/data.db`. ⚠️ Ne le commitez surtout pas, ne le modifiez pas à la main ⚠️
-
-**La base de donnée n'est pas partagée entre les développeurs, seuls les schémas le sont.**
-
-Il est possible que vous ayez des conflits sur les schémas lorsque vous deux personnes ou plus ont travaillé sur la même entité. Les conflits restent gérables dans la mesure où il s'agit de fichier JavaScript.
-
-C'est-à-dire que lorsque vous rajouterez un champs à une entité, la configuration de ce champs sera commité. Les autres développeurs pourront la récupérer par git.
-Chacun de votre coté, vous travaillerez avec votre jeu de donnée.
-
-### Gestion de la data
-
-Il vous sera possible de partager votre donnée avec votre équipe par le biais de commande strapi.
-
-**Exporter sa base**
-
-[Documentation](https://docs.strapi.io/dev-docs/data-management/export)
-
-Les comptes administrateurs ne sont pas exportés
-
-```bash
-npm run strapi export -- --file filename
-
-```
-
-**Importer une base**
-
-[Documentation](https://docs.strapi.io/dev-docs/data-management/import)
-
-⚠️ Cette manipulation efface et remplace toutes les données de la base destinataire ⚠️
-
-```bash
-npm run strapi import -- -f filename.tar.gz.enc
-
-```
-
-### Gérer les droits
-
-Strapi s'accompagne d'une gestion des profils de profils de privilèges simplifié afin de sécuriser (ou non) votre API rapidement.
-
-Dans Paramètres > Users Permissions, vous trouverez par défaut 2 profils: Authenticated et Public.
-Pour chaque profil, vous pouvez choisir quelles sont les actions possibles pour chaque entité de votre API.
-
-Vous pouvez donc gérer de l'inscription et de l'authenfication de nouvel utilisateur sur votre futur app ;)
-
-## Disclaimer
-
-Vous pouvez à tout moment demander de l'aide que ce soit pour débugger votre app Vue ou votre API.
-
-# ENJOY 🎉

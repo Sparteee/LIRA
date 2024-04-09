@@ -75,17 +75,12 @@ npm run build
 npm run develop
 ```
 
-Ensuite lors de vos développements :
-
-```bash
-npm run develop
-```
-
 Et vous connectez à l'interface d'admin du serveur sur l'url : http://localhost:1337/admin/
 
 Lancez le frontend :
 
 ```
+cd front
 npm run dev
 ```
 

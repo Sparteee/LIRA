@@ -94,6 +94,6 @@ npm run dev
  - Bastien Joly - Développement
  - Margot BODIER - Design - Communication
  - [Valentin TOUZINAUD](https://github.com/ValentinTouzinaud) - Design - Communication
- - William Camilleri - Design - Communication
+ - William CAMILLERI - Design - Communication
 
 

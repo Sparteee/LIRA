@@ -91,7 +91,7 @@ npm run dev
  - [Sean REYBOZ](https://github.com/SeanReyboz/) - Développement
  - [Raphaël VICTOR](https://github.com/Sparteee) - Développement
  - Arthur JARRIAU - Développement
- - Bastien Joly - Développement
+ - Bastien JOLY - Développement
  - Margot BODIER - Design - Communication
  - [Valentin TOUZINAUD](https://github.com/ValentinTouzinaud) - Design - Communication
  - William CAMILLERI - Design - Communication
